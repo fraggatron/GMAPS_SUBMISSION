@@ -10,10 +10,10 @@
      {
          float dt = Time.deltaTime;
 
-         float dx = /*your code here*/ * dt;
-         float dy = /*your code here*/;
-         float dz = /*your code here*/;
+         float dx = Velocity.x * dt;
+         float dy = Velocity.y * dt;
+         float dz = Velocity.z * dt;
 
-         transform./*your code here*/(new Vector3(/*your code here*/));
+         transform.Translate(new Vector3(dx, dy, dz));
      }
  }
