@@ -73,6 +73,10 @@ public class HMatrix2D
         Entries[2, 2] = m22;
     }
 
+    public HMatrix2D()
+    {
+    }
+
     public static HMatrix2D operator +(HMatrix2D left, HMatrix2D right)
     {
         HMatrix2D result = new HMatrix2D();
