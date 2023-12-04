@@ -49,5 +49,6 @@ public class Ball2D : MonoBehaviour
 
         transform.position = new Vector2(Position.x, Position.y);
     }
+
 }
 
