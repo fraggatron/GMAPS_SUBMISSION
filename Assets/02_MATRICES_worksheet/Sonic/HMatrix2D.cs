@@ -125,10 +125,10 @@ public class HMatrix2D
         private float resultX;
         private float resultY;
 
-        public HVector2D(float resultX, float resultY)
+        public HVector2D(float X, float tY)
         {
-            this.resultX = resultX;
-            this.resultY = resultY;
+            this.resultX = X;
+            this.resultY = Y;
         }
 
         public float X { get; set; }
@@ -141,8 +141,8 @@ public class HMatrix2D
     {
         return new HVector2D
         (
-            left.Entries[0, 0] * right.X + left.Entries[0, 1] * right.Y + left.Entries[0, 2] * 1.0f,
-            left.Entries[1, 0] * right.X + left.Entries[1, 1] * right.Y + left.Entries[1, 2] * 1.0f
+            left.Entries[0, 0] * right.X + left.Entries[0, 1] * right.Y + left.Entries[0, 2] ,
+            left.Entries[1, 0] * right.X + left.Entries[1, 1] * right.Y + left.Entries[1, 2]
         );
     }
 

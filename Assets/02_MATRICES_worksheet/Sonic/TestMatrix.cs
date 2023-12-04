@@ -1,5 +1,3 @@
-// Uncomment this whole file.
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
