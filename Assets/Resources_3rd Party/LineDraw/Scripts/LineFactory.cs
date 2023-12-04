@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,15 +34,20 @@ public class LineFactory : MonoBehaviour
 		}
 	}
 
-	/// <summary>
-	/// Gets an initialised and active line. The line is retrieved from the pool and set active.
-	/// </summary>
-	/// <returns>The active line.</returns>
-	/// <param name="start">Start position in world space.</param>
-	/// <param name="end">End position in world space.</param>
-	/// <param name="width">Width of line.</param>
-	/// <param name="color">Color of line.</param>
-	public Line GetLine (Vector2 start, Vector2 end, float width, Color color)
+    internal Line CreateLine()
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <summary>
+    /// Gets an initialised and active line. The line is retrieved from the pool and set active.
+    /// </summary>
+    /// <returns>The active line.</returns>
+    /// <param name="start">Start position in world space.</param>
+    /// <param name="end">End position in world space.</param>
+    /// <param name="width">Width of line.</param>
+    /// <param name="color">Color of line.</param>
+    public Line GetLine (Vector2 start, Vector2 end, float width, Color color)
 	{
 		var line = pooledLines [currentIndex];
 		

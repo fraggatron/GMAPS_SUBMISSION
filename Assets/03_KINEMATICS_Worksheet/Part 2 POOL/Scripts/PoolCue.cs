@@ -1,58 +1,60 @@
-// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-// public class PoolCue : MonoBehaviour
-// {
-// 	public LineFactory lineFactory;
-// 	public GameObject ballObject;
 
-// 	private Line drawnLine;
-// 	private Ball2D ball;
+public class PoolCue : MonoBehaviour
+{
+    public LineFactory lineFactory;
+    public GameObject ballObject;
 
-// 	private void Start()
-// 	{
-// 		ball = ballObject.GetComponent<Ball2D>();
-// 	}
+    private Line drawnLine;
+    private Ball2D ball;
 
-// 	void Update()
-// 	{
-// 		if (Input.GetMouseButtonDown(0))
-// 		{
-// 			var startLinePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); // Start line drawing
-// 			if (ball != null && ball.IsCollidingWith(/*your code here*/))
-// 			{
-// 				drawnLine = /*your code here*/;
-// 				drawnLine.EnableDrawing(true);
-// 			}
-// 		}
-// 		else if (Input.GetMouseButtonUp(0) && drawnLine != null)
-// 		{
-// 			drawnLine.EnableDrawing(false);
+    private void Start()
+    {
+        ball = ballObject.GetComponent<Ball2D>();
+    }
 
-// 			//update the velocity of the white ball.
-// 			HVector2D v = new HVector2D(/*your code here*/);
-// 			ball./*your code here*/ = v;
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            var startLinePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); // Start line drawing
+            if (ball != null && ball.IsCollidingWith(startLinePos.x, startLinePos.y))
+            {
+                drawnLine = lineFactory.CreateLine();
+                drawnLine.EnableDrawing(true);
+            }
+        }
+        else if (Input.GetMouseButtonUp(0) && drawnLine != null)
+        {
+            drawnLine.EnableDrawing(false);
 
-// 			drawnLine = null; // End line drawing            
-// 		}
+            //update the velocity of the white ball.
+            HVector2D v = new HVector2D(drawnLine.end.x - drawnLine.start.x, drawnLine.end.y - drawnLine.start.y);
+            ball.Velocity = v;
 
-// 		if (drawnLine != null)
-// 		{
-// 			drawnLine.end = /*your code here*/; // Update line end
-// 		}
-// 	}
+            drawnLine = null; // End line drawing            
+        }
 
-// 	/// <summary>
-// 	/// Get a list of active lines and deactivates them.
-// 	/// </summary>
-// 	public void Clear()
-// 	{
-// 		var activeLines = lineFactory.GetActive();
+        if (drawnLine != null)
+        {
+            Vector3 endLinePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            drawnLine.end = new Vector2(endLinePos.x, endLinePos.y); // Update line end
+        }
+    }
 
-// 		foreach (var line in activeLines)
-// 		{
-// 			line.gameObject.SetActive(false);
-// 		}
-// 	}
-// }
+    /// <summary>
+    /// Get a list of active lines and deactivates them.
+    /// </summary>
+    public void Clear()
+    {
+        var activeLines = lineFactory.GetActive();
+
+        foreach (var line in activeLines)
+        {
+            line.gameObject.SetActive(false);
+        }
+    }
+}
