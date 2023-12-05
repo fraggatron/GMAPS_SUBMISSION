@@ -201,15 +201,15 @@ public class HMatrix2D
         return false;
     }
 
-    public HMatrix2D Transpose()
-    {
+    //public HMatrix2D Transpose()
+  //  {
         // Implement matrix transposition
-    }
+  //  }
 
-    public float GetDeterminant()
-    {
+   // public float GetDeterminant()
+   // {
         // Implement determinant calculation
-    }
+   // }
 
     public void SetTranslationMat(float transX, float transY)
     {
@@ -241,7 +241,7 @@ public class HMatrix2D
         {
             for (int c = 0; c < 3; c++)
             {
-                result += entries[r, c] + "  ";
+                result += Entries[r, c] + "  ";
             }
             result += "\n";
         }
