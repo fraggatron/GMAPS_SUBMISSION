@@ -9,6 +9,8 @@ public class HVector2D
     public float x, y;
     public float h;
 
+    public object Y { get; internal set; }
+
     public HVector2D(float _x, float _y)
     {
         x = _x;

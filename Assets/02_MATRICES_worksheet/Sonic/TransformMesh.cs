@@ -16,6 +16,10 @@ public class TransformMesh : MonoBehaviour
 
     private MeshManager meshManager;
     HVector2D pos = new HVector2D();
+    private object translationMatrix;
+
+    //references
+    public void SetIdentity();
 
     void Start()
     {
@@ -28,7 +32,7 @@ public class TransformMesh : MonoBehaviour
     void Translate(float x, float y)
     {
         translationMatrix.SetIdentity();
-        translationMatrix.SetTranslationMatrix(x, y);
+        translationMatrix.SetTranslationMatr(x, y);
         Transform();
 
         pos = transformMatrix * pos;
