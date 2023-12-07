@@ -53,10 +53,13 @@ public class HVector2D
         return new HVector2D(a.x / scalar, a.y / scalar);
     }
 
-
-    internal HMatrix2D ToHVector2D()
+    public static HVector2D operator *(HMatrix2D matrix, HVector2D vector)
     {
-        throw new NotImplementedException();
+        return new HVector2D
+        (
+            matrix.Entries[0, 0] * vector.x + matrix.Entries[0, 1] * vector.y + matrix.Entries[0, 2],
+            matrix.Entries[1, 0] * vector.x + matrix.Entries[1, 1] * vector.y + matrix.Entries[1, 2]
+        );
     }
 
     public float Magnitude()
