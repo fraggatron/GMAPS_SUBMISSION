@@ -2,37 +2,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class TransformMesh : MonoBehaviour
 {
     [HideInInspector]
     public Vector3[] vertices { get; private set; }
 
-   
     public HMatrix2D transformMatrix = new HMatrix2D();
     HMatrix2D toOriginMatrix = new HMatrix2D();
     HMatrix2D fromOriginMatrix = new HMatrix2D();
     HMatrix2D rotateMatrix = new HMatrix2D();
 
     private MeshManager meshManager;
+    HMatrix2D translationMatrix = new HMatrix2D(); 
     HVector2D pos = new HVector2D();
-    private object translationMatrix;
-
-    //references
-    public void SetIdentity();
 
     void Start()
     {
         meshManager = GetComponent<MeshManager>();
         pos = new HVector2D(gameObject.transform.position.x, gameObject.transform.position.y);
-
     }
-
 
     void Translate(float x, float y)
     {
         translationMatrix.SetIdentity();
-        translationMatrix.SetTranslationMatr(x, y);
+        translationMatrix.SetTranslationMat(x, y);
         Transform();
 
         pos = transformMatrix * pos;
@@ -40,18 +35,14 @@ public class TransformMesh : MonoBehaviour
 
     void Rotate(float angle)
     {
-        HMatrix2D toOriginMatrix = new HMatrix2D();
-        HMatrix2D fromOriginMatrix = new HMatrix2D();
-        HMatrix2D rotateMatrix = new HMatrix2D();
-
-        toOriginMatrix.SetTranslationMatrix(-pos.X, -pos.Y);
+        toOriginMatrix.SetTranslationMat(-pos.X, -pos.Y);
         fromOriginMatrix.SetTranslationMat(pos.X, pos.Y);
 
-        rotateMatrix.SetRotationMatrix();
+        rotateMatrix.SetIdentity();
+        rotateMatrix.SetRotationMat(angle);
 
         transformMatrix.SetIdentity();
         transformMatrix = fromOriginMatrix * rotateMatrix * toOriginMatrix;
-
 
         Transform();
     }
