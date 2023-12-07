@@ -9,7 +9,8 @@ public class HVector2D
     public float x, y;
     public float h;
 
-    public object Y { get; internal set; }
+    public float X { get; internal set; }
+    public float Y { get; internal set; }
 
     public HVector2D(float _x, float _y)
     {
@@ -52,6 +53,12 @@ public class HVector2D
         return new HVector2D(a.x / scalar, a.y / scalar);
     }
 
+
+    internal HMatrix2D ToHVector2D()
+    {
+        throw new NotImplementedException();
+    }
+
     public float Magnitude()
     {
         return (float)Math.Sqrt(x * x + y * y);
@@ -69,10 +76,10 @@ public class HVector2D
         return (x * vec.x + y * vec.y);
     }
 
-    public HVector2D Projection()
-    {
+   // public HVector2D Projection()
+    //{
 
-    }
+    //}
 
     public float FindAngle(HVector2D vec)
     {
@@ -81,12 +88,12 @@ public class HVector2D
 
     public Vector2 ToUnityVector2()
     {
-        return Vector2.zero; // change this
+        return Vector2.zero; 
     }
 
     public Vector3 ToUnityVector3()
     {
-        return Vector2.zero; // change this
+        return Vector2.zero;
     }
 
     // public void Print()

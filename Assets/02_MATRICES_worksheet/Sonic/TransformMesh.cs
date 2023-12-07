@@ -15,7 +15,7 @@ public class TransformMesh : MonoBehaviour
     HMatrix2D rotateMatrix = new HMatrix2D();
 
     private MeshManager meshManager;
-    HMatrix2D translationMatrix = new HMatrix2D(); 
+    HMatrix2D translationMatrix = new HMatrix2D();
     HVector2D pos = new HVector2D();
 
     void Start()
@@ -30,7 +30,9 @@ public class TransformMesh : MonoBehaviour
         translationMatrix.SetTranslationMat(x, y);
         Transform();
 
-        pos = transformMatrix * pos;
+        HVector2D newPos = transformMatrix * pos;
+        pos.X = newPos.X;
+        pos.Y = newPos.Y;
     }
 
     void Rotate(float angle)
